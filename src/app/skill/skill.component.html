@@ -1,0 +1,25 @@
+
+<ng-container>
+  <button type="button" class="btn btn-sm btn-success mb-3 btn-block" (click)="addItems()">Add New Record</button>
+</ng-container>
+
+<ng-container>
+<!-- Form starts -->
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <!-- Add nested items dynamically-->
+  <div class="group-gap" formArrayName="addDynamicElement">
+    <h5 class="mb-3">Add Skills</h5>
+
+    <div class="mb-3">
+
+      <ul class="subjectList">
+        <li *ngFor="let item of addDynamicElement.controls; let i = index">
+          <input type="text" class="form-control" (dblclick)="onEditSkill(i)" [formControlName]="i" >
+          <button type="button" (click)="removeSkill(i)">Delete</button>
+        </li>
+      </ul>
+    </div>
+    <button type="submit" class="btn btn-danger btn-lg btn-block">Save all records</button>
+  </div>
+</form><!-- Form ends -->
+</ng-container>
